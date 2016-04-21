@@ -21,3 +21,13 @@ exercise. The workshop is divided into two sections:
 
 	make
 	docker-compose up --build
+
+## Adding More Examples
+
+This reposistory can be used to experiement creating polygot
+applications. It's also a great way to experiment using thrift in
+different languages. Different implementations are kept in different
+branches. So say you want to experiment with language X, checkout a
+new branch named `feature/x`. Push your branch upstream once work is
+complete. Next do a PR to master and update the "Implementations"
+section in the README with a link to your branch.
