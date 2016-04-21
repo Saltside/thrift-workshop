@@ -7,18 +7,24 @@ require 'thrift_server'
 $LOAD_PATH << File.join(File.dirname(__FILE__), 'gen-rb')
 
 require 'counting_service'
+require 'thread'
 
 class Handler
   def initialize
     @counter = 0
+    @lock = Mutex.new
   end
 
   def getValue
-    @counter
+    @lock.synchronize do
+      @counter
+    end
   end
 
   def increment
-    @counter = @counter + 1
+    @lock.synchronize do
+      @counter = @counter + 1
+    end
   end
 end
 
