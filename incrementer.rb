@@ -18,7 +18,12 @@ end
 client = ServiceClient.new
 
 loop do
-  client.increment (rand * 10).to_i
+  begin
+    client.increment (rand * 10).to_i
+    puts 'incremented...'
+  rescue Workshop::IncrementException
+    puts 'meh, bad random value'
+  end
 
   sleep rand
 end

@@ -22,8 +22,12 @@ class Handler
   end
 
   def increment(value)
-    @lock.synchronize do
-      @counter = @counter + value
+    if value <= 0
+      fail Workshop::IncrementException
+    else
+      @lock.synchronize do
+        @counter = @counter + value
+      end
     end
   end
 end
