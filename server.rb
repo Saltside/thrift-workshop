@@ -1,8 +1,9 @@
 $stdout.sync = true
 $stderr.sync = true
 
-require 'bundler'
+require 'bundler/setup'
 require 'thrift'
+require 'thrift_server'
 
 $LOAD_PATH << File.join(File.dirname(__FILE__), 'gen-rb')
 
@@ -22,12 +23,18 @@ class Handler
   end
 end
 
-handler = Handler.new()
-processor = Workshop::CountingService::Processor.new(handler)
-transport = Thrift::ServerSocket.new(9090)
-transportFactory = Thrift::BufferedTransportFactory.new()
-server = Thrift::ThreadedServer.new(processor, transport, transportFactory)
+server = ThriftServer.threaded Workshop::CountingService, Handler.new
 
-puts "Starting the server..."
-server.serve()
-puts "done."
+server.log Logger.new($stdout)
+
+server.start
+
+# handler = Handler.new()
+# processor = Workshop::CountingService::Processor.new(handler)
+# transport = Thrift::ServerSocket.new(9090)
+# transportFactory = Thrift::BufferedTransportFactory.new()
+# server = Thrift::ThreadedServer.new(processor, transport, transportFactory)
+#
+# puts "Starting the server..."
+# server.serve()
+# puts "done."

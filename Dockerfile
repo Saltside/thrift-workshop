@@ -1,5 +1,7 @@
 FROM ruby:2.3
 
+RUN apt-get update && apt-get -y install git-core
+
 RUN mkdir /app
 WORKDIR /app
 
