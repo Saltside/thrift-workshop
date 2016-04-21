@@ -26,7 +26,7 @@ handler = Handler.new()
 processor = Workshop::CountingService::Processor.new(handler)
 transport = Thrift::ServerSocket.new(9090)
 transportFactory = Thrift::BufferedTransportFactory.new()
-server = Thrift::SimpleServer.new(processor, transport, transportFactory)
+server = Thrift::ThreadedServer.new(processor, transport, transportFactory)
 
 puts "Starting the server..."
 server.serve()
