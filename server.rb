@@ -21,9 +21,9 @@ class Handler
     end
   end
 
-  def increment
+  def increment(value)
     @lock.synchronize do
-      @counter = @counter + 1
+      @counter = @counter + value
     end
   end
 end

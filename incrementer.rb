@@ -18,7 +18,7 @@ end
 client = ServiceClient.new
 
 loop do
-  client.increment
+  client.increment (rand * 10).to_i
 
   sleep rand
 end
