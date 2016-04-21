@@ -11,3 +11,13 @@ exercise. The workshop is divided into two sections:
 	 Then booting the app with `docker-compose`.
 2. Updating the code to use the third party tools to write the client
 	 and server.
+
+## Implementations
+
+1. Master -- incrementer: ruby (thrifter), server: ruby
+	 (thrift_server), reader: ruby (thrifter)
+
+## Building
+
+	make
+	docker-compose up --build
