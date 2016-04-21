@@ -2,22 +2,23 @@ $stdout.sync = true
 $stderr.sync = true
 
 require 'bundler/setup'
-require 'thrift'
+require 'thrifter'
 
 $LOAD_PATH << File.join(File.dirname(__FILE__), 'gen-rb')
 
 require 'counting_service'
 
-transport = Thrift::FramedTransport.new(Thrift::Socket.new('server', 9090))
-protocol = Thrift::BinaryProtocol.new(transport)
-client = Workshop::CountingService::Client.new(protocol)
+ServiceClient = Thrifter.build(Workshop::CountingService::Client)
 
-transport.open()
+ServiceClient.configure do |config|
+  config.uri = 'tcp://server:9090'
+  config.keep_alive = true
+end
+
+client = ServiceClient.new
 
 loop do
   puts client.getValue
 
   sleep 1
 end
-
-transport.close()
