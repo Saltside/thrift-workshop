@@ -20,5 +20,5 @@ client = ServiceClient.new
 loop do
   puts client.getValue
 
-  sleep 1
+  sleep rand
 end

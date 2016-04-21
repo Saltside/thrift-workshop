@@ -20,5 +20,5 @@ client = ServiceClient.new
 loop do
   client.increment
 
-  sleep 1
+  sleep rand
 end
