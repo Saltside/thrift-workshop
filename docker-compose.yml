@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  server:
+    build: .
+    command: ruby server.rb
+
+  reader:
+    build: .
+    command: ruby reader.rb
+    depends_on:
+      - server
