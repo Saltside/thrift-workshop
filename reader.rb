@@ -14,6 +14,10 @@ client = Workshop::CountingService::Client.new(protocol)
 
 transport.open()
 
-puts client.getValue
+loop do
+  puts client.getValue
+
+  sleep 1
+end
 
 transport.close()
