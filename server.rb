@@ -23,7 +23,7 @@ class Handler
 
   def increment(value)
     if value <= 0
-      fail Workshop::IncrementException
+      fail Workshop::IncrementException.new({ value: value })
     else
       @lock.synchronize do
         @counter = @counter + value

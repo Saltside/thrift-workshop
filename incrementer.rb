@@ -21,8 +21,8 @@ loop do
   begin
     client.increment (rand * 10).to_i
     puts 'incremented...'
-  rescue Workshop::IncrementException
-    puts 'meh, bad random value'
+  rescue Workshop::IncrementException => ex
+    puts "meh, bad random value: #{ex.value}"
   end
 
   sleep rand

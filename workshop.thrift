@@ -1,6 +1,7 @@
 namespace rb workshop
 
 exception IncrementException {
+  1: required i32 value
 }
 
 service CountingService {
