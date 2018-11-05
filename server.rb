@@ -6,33 +6,22 @@ require 'thrift_server'
 
 $LOAD_PATH << File.join(File.dirname(__FILE__), 'gen-rb')
 
-require 'counting_service'
+require 'time_stamp_service'
 require 'thread'
 
 class Handler
   def initialize
-    @counter = 0
     @lock = Mutex.new
   end
 
-  def getValue
+  def getCurrentTimeStamp
     @lock.synchronize do
-      @counter
-    end
-  end
-
-  def increment(value)
-    if value <= 0
-      fail Workshop::IncrementException.new({ value: value })
-    else
-      @lock.synchronize do
-        @counter = @counter + value
-      end
+      Time.now.to_i
     end
   end
 end
 
-server = ThriftServer.threaded Workshop::CountingService, Handler.new
+server = ThriftServer.threaded Workshop::TimeStampService, Handler.new
 
 server.log Logger.new($stdout)
 

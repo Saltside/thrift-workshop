@@ -1,11 +1,12 @@
 # Thirft Workshop
 
 This repo contains example code for creating thrift/clients and
-servers using various tools. There is a simple thrift protocol
-designed for use with multiple clients. There is one RPC to increment
-a counter and another RPC to retrive the current value.
-`docker-compose` is used to create all the containers for this
-exercise. The workshop is divided into two sections:
+servers using various tools. This repo contains example code for 
+creating thrift/clients and servers using various tools. There is 
+a simple thrift protocol designed for use with multiple clients. 
+There is one RPC to increment a counter and another RPC to retrive 
+the current value.`docker-compose` is used to create all the containers
+for this exercise. The workshop is divided into two sections:
 
 1. Using the official Thrift library to create the client and server.
 	 Then booting the app with `docker-compose`.
@@ -16,6 +17,9 @@ exercise. The workshop is divided into two sections:
 
 1. Master -- incrementer: ruby (thrifter), server: ruby
 	 (thrift_server), reader: ruby (thrifter)
+
+2. feature/ruby-cl-ruby-se -- timestamp: ruby (thrifter), server: ruby
+	(thrift_server), reader: ruby (thrifter)
 
 ## Building
 

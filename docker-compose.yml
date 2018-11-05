@@ -10,9 +10,3 @@ services:
     command: ruby reader.rb
     depends_on:
       - server
-
-  incrementer:
-    build: .
-    command: ruby incrementer.rb
-    depends_on:
-      - server

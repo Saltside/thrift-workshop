@@ -6,9 +6,9 @@ require 'thrifter'
 
 $LOAD_PATH << File.join(File.dirname(__FILE__), 'gen-rb')
 
-require 'counting_service'
+require 'time_stamp_service'
 
-ServiceClient = Thrifter.build(Workshop::CountingService::Client)
+ServiceClient = Thrifter.build(Workshop::TimeStampService::Client)
 
 ServiceClient.configure do |config|
   config.uri = 'tcp://server:9090'
@@ -18,7 +18,7 @@ end
 client = ServiceClient.new
 
 loop do
-  puts client.getValue
+  puts client.getCurrentTimeStamp
 
   sleep rand
 end
